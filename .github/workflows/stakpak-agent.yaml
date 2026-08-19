@@ -1,0 +1,19 @@
+name: Stakpak Agent
+on: 
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: Request to run the agent with
+        required: true
+
+jobs:
+  run_agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Stakpak Agent 
+        uses: stakpak/stakpak-action@v1.0.10
+        with:
+          api_key: ${{ secrets.STAKPAK_API_KEY }}
+          prompt: ${{ inputs.prompt }}
